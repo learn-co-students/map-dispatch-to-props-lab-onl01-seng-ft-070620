@@ -3,27 +3,25 @@ import { addRestaurant } from '../actions/restaurants';
 import { connect } from 'react-redux';
 
 export class RestaurantInput extends Component {
-
   state = {
     name: '',
     location: ''
   }
 
-  handleOnNameChange = event => {
+// updating state with user form inputs
+  handleChange = event => {
     this.setState({
-      name: event.target.value
-    });
+      [event.target.id]: event.target.value
+    })
   }
 
-  handleOnLocationChange = event => {
-    this.setState({
-      location: event.target.value
-    });
-  }
-
+// invoking addRestaurant() to update state
+// submitted info is then rendered in the list below the form
+// and the form is cleared out
   handleOnSubmit = event => {
     event.preventDefault()
     this.props.addRestaurant(this.state)
+    this.setState({ name: '', location: '' })
   }
 
   render() {
@@ -32,7 +30,7 @@ export class RestaurantInput extends Component {
         <p>
           <input
             type="text"
-            onChange={(event) => this.handleOnNameChange(event)}
+            onChange={(event) => this.handleChange(event)}
             id="name"
             value={this.state.name}
             placeholder="restaurant name" />
@@ -40,7 +38,7 @@ export class RestaurantInput extends Component {
         <p>
           <input
             type="text"
-            onChange={(event) => this.handleOnLocationChange(event)}
+            onChange={(event) => this.handleChange(event)}
             id="location"
             value={this.state.location}
             placeholder="location" />
