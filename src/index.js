@@ -6,10 +6,10 @@ import { createStore } from 'redux';
 import manageRestaurants from './reducers/manageRestaurants';
 
 const store = createStore(manageRestaurants, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
-
+// debugger
 ReactDOM.render(
   <Provider store={store}>
-    <App store={store}/>
+    <App />
   </Provider>,
   document.getElementById('root')
 );
